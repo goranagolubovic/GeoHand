@@ -3,33 +3,37 @@ import GenerallyScreen from "../screens/Generally/GenerallyScreen";
 import LandMarksScreen from "../screens/LandMarksScreen";
 import NewsScreen from "../screens/News/NewsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-
-const navigationConfig =[
+import DefaultScreen from "../screens/Default/DefaultScreen"
+ const navigationConfig =[
     {
-        name:"Generally",
+        name:"default",
+        component:DefaultScreen,
+        image:'md-information-circle-outline'
+    },
+    {
+        name:"generally",
         component:GenerallyScreen,
         image:'md-information-circle-outline'
     },
     {
-        name:"Settings",
+        name:"settings",
         component:SettingsScreen,
         image:"md-settings-outline"
     },
     {
-        name:"Landmarks",
+        name:"landmarks",
         component:LandMarksScreen,
         image:"md-bookmark-outline"
     },
     {
-        name:"Cities",
+        name:"cities",
         component:CitiesScreen,
         image:"md-podium-outline"
     },
     {
-        name:"News",
+        name:"news",
         component:NewsScreen,
         image:"md-today-outline"
     },
 ]
-
 export default navigationConfig;

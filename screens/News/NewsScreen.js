@@ -3,6 +3,7 @@ import { View,Text, ScrollView,Linking,TouchableOpacity} from 'react-native'
 import { Searchbar,Card,Title, Paragraph,Headline} from 'react-native-paper';
 import { getNewsData } from '../../api/services/news-service';
 import { getCountryData } from '../../api/services/countries-service';
+import { useTranslation } from 'react-i18next';
 
 import styles from './NewsScreen.style'
 import Spinner from '../../components/spinner/Spinner';
@@ -11,6 +12,7 @@ const NewsScreen = () => {
   const [code,setCode]=useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [newsArr,setNewsArr]=useState([]);
+  const { t } = useTranslation();
 
   const onChangeSearch = async(query) => {
     setNewsArr([])
@@ -48,7 +50,7 @@ const NewsScreen = () => {
   return (
   <View style={styles.container}>
     <Searchbar
-      placeholder="Enter country"
+      placeholder={t('common:enterCountry')}
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={styles.search}
@@ -61,7 +63,7 @@ const NewsScreen = () => {
     <Paragraph/>
     <Text style={styles.link}
       onPress={() => Linking.openURL(elem.url)}>
-  Read article
+ {t('common:readArticle')}
 </Text>
   <Paragraph/>
   </Card.Content>

@@ -1,16 +1,19 @@
 import React from 'react'
-import { View,Text} from 'react-native'
+import { View,Text,ScrollView} from 'react-native'
 import { Searchbar,Card,Title, Paragraph} from 'react-native-paper';
 import { getCountryData } from '../../api/services/countries-service';
 import Spinner from '../../components/spinner/Spinner';
 import styles from "./GenerallyScreen.style.js"
 import { Image } from "react-native"
+import { useTranslation } from 'react-i18next';
+
 const GenerallyScreen = () => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [capitalCity,setCapitalCity]=React.useState('');
   const [flag,setFlag]=React.useState('');
   const [population,setPopulation]=React.useState('');
   const [area,setArea]=React.useState('');
+  const { t } = useTranslation();
 
   const onChangeSearch = async(query) => {
     setCapitalCity("")
@@ -37,26 +40,26 @@ const GenerallyScreen = () => {
   return (
     <View style={styles.container}>
     <Searchbar
-      placeholder="Enter country"
+      placeholder={t('common:enterCountry')}
       onChangeText={onChangeSearch}
       value={searchQuery}
       style={styles.search}
     />
-     <View style={styles.content}>
+    <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
      {(searchQuery!=="" &&(capitalCity==="" || flag===""))&&(<Spinner/>)}
       {(capitalCity!=="" && flag!=="") && (<Card>
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
     <Card.Content>
-      <Title style={styles.capitalCity}>Capital city:{capitalCity}</Title>
+      <Title style={styles.capitalCity}>{t('common:capitalCity')}:{capitalCity}</Title>
       <Paragraph/>
     <Image source={{ uri: flag }} style={styles.img} />
     <Paragraph/>
-    <Text>Population:{population}</Text>
-    <Text>Area:{area}</Text>
+    <Text>{t('common:population')}:{population}</Text>
+    <Text>{t('common:area')}:{area}</Text>
     </Card.Content>
     </View>
   </Card>)}
-    </View>
+    </ScrollView>
   </View>
   )
 }
