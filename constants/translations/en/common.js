@@ -1,8 +1,19 @@
 export default {
-    enterCountry: 'Enter country',
-    languageSelector: 'Select Your Language',
-    readArticle:'Read article',
-    population:'Population',
-    area:'Area',
-    capitalCity:'Capital city'
-  };
+  enterCountry: "Enter country",
+  languageSelector: "Select Your Language",
+  cacheSelector: "Caching settings",
+  allowCaching: "Allow caching",
+  pictureNumber: "Choose number of pictures",
+  readArticle: "Read article",
+  population: "Population",
+  area: "Area",
+  capitalCity: "Capital city",
+  en: "English",
+  sr: "Serbian",
+  lat: "Latitude",
+  lon: "Longitude",
+  weatherForecast: "Weather forecast",
+  subFeel: "Subjective feel",
+  today: "Today",
+  showPresentation: "Presentation",
+};

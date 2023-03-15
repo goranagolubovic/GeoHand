@@ -1,8 +1,19 @@
 export default {
-    enterCountry: 'Unesite državu',
-    languageSelector: 'Izaberite jezik',
-    readArticle:'Pročitaj članak',
-    population:'Broj stanovnika',
-    area:'Površina',
-    capitalCity:'Glavni grad'
-  };
+  enterCountry: "Unesite državu",
+  languageSelector: "Izaberite jezik",
+  cacheSelector: "Postavke keširanja",
+  allowCaching: "Omogući keširanje",
+  pictureNumber: "Izaberite broj slika",
+  readArticle: "Pročitaj članak",
+  population: "Broj stanovnika",
+  area: "Površina",
+  capitalCity: "Glavni grad",
+  en: "Engleski",
+  sr: "Srpski",
+  lat: "Geografska širina",
+  lon: "Geografska dužina",
+  weatherForecast: "Vremenska prognoza",
+  subFeel: "Subjektivni osjećaj",
+  today: "Danas",
+  showPresentation: "Prezentacija",
+};

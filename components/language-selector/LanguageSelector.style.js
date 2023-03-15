@@ -2,17 +2,13 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-      paddingTop: 60,
-      paddingHorizontal: 16
-    },
-    row: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'space-between'
     },
     title: {
-      color: '#444',
-      fontSize: 28,
+      color: '#144e5a',
+      fontSize: 20,
       fontWeight: '600'
     },
     buttonContainer: {
@@ -26,7 +22,7 @@ const styles = StyleSheet.create({
     selectedText: {
       fontSize: 18,
       fontWeight: '600',
-      color: 'tomato',
+      color: '#ffb901',
       paddingVertical: 4
     }
   });
