@@ -6,16 +6,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
   },
-  search: {
-    height: 30,
-    width: 250,
-    marginTop: 30,
-    fontSize: 10,
-  },
   content: {
-    marginTop: 60,
+    marginTop: 20,
+    marginBottom: 20,
+    justifyContent: "center",
+    alignItems: "center",
     width: 300,
-    height: 300,
   },
   title: {
     fontSize: 20,

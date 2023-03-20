@@ -1,12 +1,14 @@
 import { React, useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { fetchDataFromDB } from "../../db/db";
+import { fetchCitiesTable } from "../../db/db";
 
 const CountryMap = () => {
   const [citiesData, setCitiesData] = useState([]);
 
   useEffect(() => {
-    setCitiesData(fetchDataFromDB("city"));
+    console.log("mountained cities map");
+    setCitiesData(fetchCitiesTable());
+    console.log(citiesData);
   }, []);
 
   return (

@@ -11,7 +11,11 @@ import styles from "./CitiesScreen.style";
 import * as SQLite from "expo-sqlite";
 //import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
-import { openGeoHandDatabase } from "../../db/db";
+import {
+  fetchCitiesFromDB,
+  fetchCitiesTable,
+  openGeoHandDatabase,
+} from "../../db/db";
 import { FileSystem } from "expo";
 import { BottomNavigation } from "react-native-paper";
 import CountryMap from "../../features/country-map/CountryMap";
@@ -41,23 +45,27 @@ const CitiesScreen = () => {
   //const [regions,setRegions]=useState([]);
   const { t } = useTranslation();
 
-  const MapRoute = () => <CountryMap />;
+  const MapRouteCities = () => <CountryMap />;
 
-  const DetailsRoute = () => <CitiesDetails />;
+  const DetailsRouteCities = () => <CitiesDetails />;
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     {
-      key: "mapa",
+      key: "mapaGradovi",
       title: t("navigate:map"),
       focusedIcon: "map-marker",
       unfocusedIcon: "map-marker-outline",
     },
-    { key: "detalji", title: t("navigate:details"), focusedIcon: "album" },
+    {
+      key: "detaljiGradovi",
+      title: t("navigate:details"),
+      focusedIcon: "album",
+    },
   ]);
 
   const renderScene = BottomNavigation.SceneMap({
-    mapa: MapRoute,
-    detalji: DetailsRoute,
+    detaljiGradovi: DetailsRouteCities,
+    mapaGradovi: MapRouteCities,
   });
 
   const onChangeSearch = async (query) => {
@@ -159,6 +167,9 @@ const CitiesScreen = () => {
 
   // },[regions])
   //   po
+  useEffect(() => {
+    fetchCitiesFromDB();
+  }, []);
   return (
     // <View style={styles.container}>
     //   <Searchbar
@@ -183,8 +194,6 @@ const CitiesScreen = () => {
       }}
       activeColor="white"
     />
-    //   </ScrollView>
-    // </View>
   );
 };
 

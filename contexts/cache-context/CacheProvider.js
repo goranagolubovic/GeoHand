@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import CacheContext from './cache-context';
+import React, { useState } from "react";
+import CacheContext from "./cache-context";
 
 function CacheProvider(props) {
   const [cache, setCache] = useState(false);

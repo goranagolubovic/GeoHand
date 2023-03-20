@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, ScrollView } from "react-native";
 import { Searchbar, Card, Title, Paragraph } from "react-native-paper";
 import { getCountryData } from "../../api/services/countries-service";
@@ -8,20 +8,14 @@ import { Image } from "react-native";
 import { useTranslation } from "react-i18next";
 
 const GenerallyScreen = () => {
-  const [searchQuery, setSearchQuery] = React.useState("");
   const [capitalCity, setCapitalCity] = React.useState("");
   const [flag, setFlag] = React.useState("");
   const [population, setPopulation] = React.useState("");
   const [area, setArea] = React.useState("");
   const { t } = useTranslation();
 
-  const onChangeSearch = async (query) => {
-    setCapitalCity("");
-    setFlag("");
-    setPopulation("");
-    setArea("");
-    setSearchQuery(query);
-    const response = await getCountryData(query);
+  const fetchInfos = async () => {
+    const response = await getCountryData("France");
     const responseData = await response.json();
     if (responseData.status === 404) {
       return;
@@ -33,19 +27,17 @@ const GenerallyScreen = () => {
       setArea(responseData[0].area);
     } catch (ex) {}
   };
+  useEffect(() => {
+    fetchInfos();
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Searchbar
-        placeholder={t("common:enterCountry")}
-        onChangeText={onChangeSearch}
-        value={searchQuery}
-        style={styles.search}
-      />
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {searchQuery !== "" && (capitalCity === "" || flag === "") && (
-          <Spinner />
-        )}
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+      >
+        {capitalCity === "" || (flag === "" && <Spinner />)}
         {capitalCity !== "" && flag !== "" && (
           <Card>
             <View style={styles.card}>
@@ -58,7 +50,7 @@ const GenerallyScreen = () => {
                 <Paragraph />
                 <View style={styles.generalInfos}>
                   <Text>
-                    {t("common:population")} {population}
+                    {t("common:population")}: {population}
                   </Text>
                   <Text>
                     {t("common:area")}: {area}

@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "space-evenly",
   },
   search: {
     height: 30,
@@ -15,12 +14,10 @@ const styles = StyleSheet.create({
   },
   content: {
     marginTop: 60,
-    width: 300,
-    height: 300,
   },
-  link: {
-    color: "blue",
-    textDecorationLine: "underline",
+  img: {
+    height: 100,
+    width: 200,
   },
 });
 

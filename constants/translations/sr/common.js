@@ -16,4 +16,5 @@ export default {
   subFeel: "Subjektivni osjećaj",
   today: "Danas",
   showPresentation: "Prezentacija",
+  back: "Nazad",
 };

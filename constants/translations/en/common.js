@@ -16,4 +16,5 @@ export default {
   subFeel: "Subjective feel",
   today: "Today",
   showPresentation: "Presentation",
+  back: "Back",
 };

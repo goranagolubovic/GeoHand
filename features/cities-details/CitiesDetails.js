@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import CityDetails from "../../features/city-details/CityDetails";
-import { fetchDataFromDB } from "../../db/db";
+import { fetchCitiesTable } from "../../db/db";
 
 const CitiesDetails = () => {
   const [citiesData, setCitiesData] = useState([]);
   useEffect(() => {
-    setCitiesData(fetchDataFromDB("city"));
+    setCitiesData(fetchCitiesTable());
   }, []);
   return (
     <ScrollView>
