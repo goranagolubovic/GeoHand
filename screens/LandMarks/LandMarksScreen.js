@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import LandmarksMap from "../../features/landmarks-map/LandmarksMap";
 import LandmarksDetails from "../../features/landmarks-details/LandmarksDetails";
 import { fetchLandmarksFromDB, fetchLandmarksTable } from "../../db/db";
+import Spinner from "../../components/spinner/Spinner";
 
 const LandMarksScreen = () => {
   const MapRouteLandmarks = () => <LandmarksMap />;

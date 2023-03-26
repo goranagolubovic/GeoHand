@@ -17,4 +17,6 @@ export default {
   today: "Danas",
   showPresentation: "Prezentacija",
   back: "Nazad",
+  countryHistory:
+    "Francuska ima bogatu i raznoliku istoriju koja seže u prapovijesna vremena, s dokazima o ljudskom naseljavanju u regiji koji datiraju više od 1 milion godina unazad.Gali, keltsko pleme, bili su dominantni narod u regiji prije nego što je bila osvojena od strane Rimskog carstva u 1. vijeku p.n.e.Nakon pada Rimskog carstva, Francuska je bila napadnuta od strane različitih germanskih plemena, a u 5. vijeku su Franki iznikli kao dominantna sila.Pod Merovinškom i Karolinškom dinastijom, Francuska je postala značajna evropska sila, a do 13. vijeka postala je jedna od najmoćnijih monarhija u Evropi.Francuska revolucija 1789. godine označila je prekretnicu u francuskoj istoriji, dovela je do svrgavanja monarhije i uspostave Prve francuske republike.U 19. i početkom 20. vijeka, Francuska je igrala važnu ulogu u kolonijalizmu i imperijalizmu koji su karakterizirali to doba, a također je bila snažno uključena u Prvi i Drugi svjetski rat.Od kraja Drugog svjetskog rata, Francuska je postala vodeći član Evropske unije, i poznata je po svojim doprinosima umjetnosti, kulturi, kuhinji i modi.",
 };

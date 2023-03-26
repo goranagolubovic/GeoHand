@@ -2,13 +2,12 @@ import { React, useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { fetchCitiesTable } from "../../db/db";
 
-const CountryMap = () => {
+const CountryMap = ({ onReady }) => {
   const [citiesData, setCitiesData] = useState([]);
 
   useEffect(() => {
     console.log("mountained cities map");
     setCitiesData(fetchCitiesTable());
-    console.log(citiesData);
   }, []);
 
   return (
@@ -20,6 +19,7 @@ const CountryMap = () => {
         latitudeDelta: 50,
         longitudeDelta: 50,
       }}
+      onMapReady={onReady}
     >
       {citiesData.map((city) => (
         <Marker

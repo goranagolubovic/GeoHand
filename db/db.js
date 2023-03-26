@@ -9,78 +9,104 @@ const cities = [
     lat: 48.8566,
     lon: 2.3522,
     country: "France",
+    description:
+      'Paris is known as the "City of Light" and is famous for its stunning architecture, beautiful parks, and rich history.The city is home to iconic landmarks such as the Eiffel Tower, Notre-Dame Cathedral, and the Louvre Museum.Paris is a cultural and intellectual capital of the world, attracting artists, writers, and thinkers from around the globe.The city is known for its world-class cuisine, including French pastries, wine, and cheese.Paris is a popular tourist destination, welcoming millions of visitors each year who come to experience its unique charm and beauty.',
   },
   {
     name: "Marseille",
     lat: 43.2964,
     lon: 5.37,
     country: "France",
+    description:
+      "Marseille is a vibrant and colorful port city located on the Mediterranean coast of France, known for its rich history and cultural diversity.The city is home to stunning architecture, including the Basilique Notre-Dame de la Garde, a beautiful Catholic basilica that sits atop a hill overlooking the city and the sea.Marseille is a hub for seafood, with fresh catches brought in daily from the nearby fishing villages, and is known for its delicious bouillabaisse, a traditional fish stew.The city has a thriving arts scene, with museums and galleries showcasing everything from contemporary art to ancient history. Marseille is also a gateway to the Calanques, a series of breathtaking cliffs and coves along the Mediterranean coastline, making it a popular destination for outdoor enthusiasts and nature lovers.",
   },
   {
     name: "Lyon",
     lat: 45.76,
     lon: 4.84,
     country: "France",
+    description:
+      "Lyon is a historic city located in east-central France, known for its beautiful architecture, rich cultural heritage, and gastronomic delights.The city is famous for its traboules, a network of secret passageways and staircases that connect the streets and buildings of the old town.Lyon is also known for its Roman-era amphitheaters, basilicas, and other ancient ruins that give visitors a glimpse into the city's past.Lyon is renowned for its culinary scene, particularly its meat-centric dishes such as saucisson, andouillette, and rosette.",
   },
   {
     name: "Toulouse",
     lat: 43.6045,
     lon: 1.444,
     country: "France",
+    description:
+      "Toulouse is a charming city located in southwestern France, known for its beautiful pink-brick architecture and rich history.The city is home to the stunning Basilica of Saint-Sernin, one of the largest and most beautiful Romanesque churches in Europe.Toulouse is a hub for the aerospace industry, with companies such as Airbus and the European Space Agency headquartered there.The city is known for its lively street markets, where visitors can find everything from fresh produce and flowers to artisanal crafts and antiques.",
   },
   {
     name: "Nice",
     lat: 43.7034,
     lon: 7.2663,
     country: "France",
+    description:
+      "Nice is a beautiful city located on the French Riviera, known for its stunning coastline, charming old town, and year-round sunny weather.The city is home to the Promenade des Anglais, a picturesque seaside walkway that runs along the Bay of Angels and is lined with palm trees and grand hotels. Nice is a hub for art and culture, with museums and galleries showcasing everything from modern art to ancient history.",
   },
   {
     name: "Nantes",
     lat: 47.2181,
     lon: -1.5528,
     country: "France",
+    description:
+      "Nantes is a vibrant city located in western France, known for its rich history, lively arts scene, and beautiful green spaces.The city is home to the magnificent Château des Ducs de Bretagne, a historic castle that now houses a museum dedicated to the city's history and culture.Nantes is famous for its art installations, including the famous mechanical elephant that walks through the city streets as part of the Les Machines de l'Île exhibit.",
   },
   {
     name: "Montpellier",
     lat: 43.6119,
     lon: 3.8772,
     country: "France",
+    description:
+      "The city is home to the stunning Place de la Comédie, a grand square in the heart of the city that is surrounded by cafes, restaurants, and shops.Montpellier is known for its vibrant street art scene, with colorful murals and graffiti adorning buildings and walls throughout the city.The city is a hub for education and research, with several prestigious universities and research institutes located there.Montpellier is surrounded by beautiful countryside, including the stunning Languedoc wine region, where visitors can sample some of the best wines in France.",
   },
   {
     name: "Strasbourg",
     lat: 48.5833,
     lon: 7.7458,
     country: "France",
+    description:
+      "Strasbourg is a charming city located in eastern France, known for its beautiful architecture, rich history, and unique blend of French and German cultures.The city is home to the stunning Cathedral of Notre Dame, a magnificent Gothic cathedral that is one of the most famous landmarks in France.Strasbourg is known for its charming half-timbered houses, which can be found in the historic Petite France neighborhood.",
   },
   {
     name: "Bordeaux",
     lat: 44.84,
     lon: -0.58,
     country: "France",
+    description:
+      "The city is home to over 350 historic buildings, including the magnificent Place de la Bourse and the stunning Basilica of Saint Michael.Bordeaux is famous for its wine, with some of the most prestigious vineyards in the world located in the surrounding countryside.The city is known for its vibrant food scene, with delicious local specialties like cannelés (small, sweet cakes) and entrecôte bordelaise (steak with a rich wine sauce). Bordeaux is a UNESCO World Heritage site, recognized for its exceptional urban and architectural ensemble, which includes the historic city center and the famous Bordeaux vineyards.",
   },
   {
     name: "Lille",
     lat: 50.6278,
     lon: 3.0583,
     country: "France",
+    description:
+      "Lille is a charming city located in northern France, known for its beautiful architecture, rich history, and friendly locals.The city is home to several stunning landmarks, including the ornate Old Stock Exchange building and the impressive Palais des Beaux-Arts museum.The city is known for its vibrant cultural scene, with numerous art galleries, theaters, and music venues hosting events throughout the year.Lille is also a popular destination for shopping, with a mix of trendy boutiques, traditional markets, and high-end stores offering something for every taste and budget.",
   },
   {
     name: "Rennes",
     lat: 48.1147,
     lon: -1.6794,
     country: "France",
+    description:
+      "Rennes is a charming city located in western France, known for its beautiful historic architecture, vibrant cultural scene, and picturesque parks.The city is home to several stunning landmarks, including the impressive Saint George Palace and the stunning Rennes Cathedral.The city is known for its lively nightlife, with a mix of trendy bars, clubs, and live music venues keeping visitors entertained until the early hours.",
   },
   {
     name: "Reims",
     lat: 49.2628,
     lon: 4.0347,
     country: "France",
+    description:
+      "Reims is a city located in northeastern France, known for its rich history, stunning architecture, and world-famous Champagne wine.The city is home to several impressive landmarks, including the beautiful Reims Cathedral and the historic Palace of Tau.Reims is the unofficial capital of the Champagne region, with numerous vineyards and wineries offering tours and tastings of their world-class Champagne.",
   },
   {
     name: "Toulon",
     lat: 43.1258,
     lon: 5.9306,
     country: "France",
+    description:
+      "Toulon is a port city located on the French Riviera, known for its stunning beaches, picturesque harbor, and Mediterranean charm.The city is home to several impressive landmarks, including the historic Toulon Cathedral and the stunning Mont Faron mountain range.Toulon is famous for its naval heritage, with several museums and attractions showcasing the city's rich maritime history.The city is known for its lively atmosphere, with a mix of trendy bars, clubs, and restaurants keeping visitors entertained day and night.Toulon is also a popular destination for outdoor enthusiasts, with opportunities for hiking, cycling, and water sports available throughout the year.",
   },
 ];
 const landmarks = [
@@ -106,7 +132,7 @@ const landmarks = [
     favorite: 0,
   },
   {
-    name: "Cathedral of Notre-Dame de Paris",
+    name: "Cathedral of Notre-Dame",
     lat: 48.85312443201169,
     lon: 2.3495614528656006,
     country: "France",
@@ -196,7 +222,7 @@ export const fetchLandmarksFromDB = () => {
 const createTableCity = () => {
   db.transaction((tx) => {
     tx.executeSql(
-      "CREATE TABLE if not exists city (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT)"
+      "CREATE TABLE if not exists city (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)"
     );
   });
 };
@@ -205,8 +231,8 @@ const fillTableCity = () => {
   db.transaction((tx) => {
     cities.forEach((elem) => {
       tx.executeSql(
-        "INSERT INTO city (name,lat,lon,country) VALUES (?,?,?,?)",
-        [elem.name, elem.lat, elem.lon, elem.country]
+        "INSERT INTO city (name,lat,lon,country,description) VALUES (?,?,?,?,?)",
+        [elem.name, elem.lat, elem.lon, elem.country, elem.description]
       );
     });
   });

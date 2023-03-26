@@ -1,30 +1,52 @@
-import React from 'react';
-import { View,Text,Slider} from 'react-native';
-import { useTranslation } from 'react-i18next';
-import {Switch} from 'react-native-paper';
-import CacheProvider from '../../contexts/cache-context/CacheProvider';
-import styles
- from './CacheSelector.style';
-import CacheContext from '../../contexts/cache-context/cache-context';
-import { useContext } from 'react';
+import React from "react";
+import { View, Text, Slider } from "react-native";
+import { useTranslation } from "react-i18next";
+import { Switch } from "react-native-paper";
 
-const CacheSelector = () => {
-    const { t } = useTranslation();
-    const { cache, setCache } = useContext(CacheContext);
+import { CacheContext } from "../../contexts/cache-context/CacheProvider";
+import { useContext } from "react";
+import { useOrientation } from "../../hooks/use-orientation";
+import portraitStyles from "./CacheSelectorPortrait.style";
+import landscapeStyles from "./CacheSelectorLandscape.style";
 
-    const onToggleSwitch = () => {
-      setCache(!cache)
-    }
+const CacheSelector = (isPortrait) => {
+  const { t } = useTranslation();
+  const { cache, setCache } = useContext(CacheContext);
+  //const isPortrait = useOrientation();
+  const onToggleSwitch = () => {
+    setCache(!cache);
+  };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{t('common:cacheSelector')}</Text>
-    <View style={styles.switch}>
-        <Text>{t('common:allowCaching')}</Text>
-      <Switch value={cache}  onValueChange={onToggleSwitch} color="#ffb901" style={styles.switchButton}/>
+    <View
+      style={isPortrait ? portraitStyles.container : landscapeStyles.container}
+    >
+      <Text style={isPortrait ? portraitStyles.title : landscapeStyles.title}>
+        {t("common:cacheSelector")}
+      </Text>
+      <View style={isPortrait ? portraitStyles.switch : landscapeStyles.switch}>
+        <Text
+          style={
+            isPortrait
+              ? portraitStyles.textWithButton
+              : landscapeStyles.textWithButton
+          }
+        >
+          {t("common:allowCaching")}
+        </Text>
+        <Switch
+          value={cache}
+          onValueChange={onToggleSwitch}
+          color="#ffb901"
+          style={
+            isPortrait
+              ? portraitStyles.switchButton
+              : landscapeStyles.switchButton
+          }
+        />
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default CacheSelector
+export default CacheSelector;

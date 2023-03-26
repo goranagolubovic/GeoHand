@@ -17,4 +17,6 @@ export default {
   today: "Today",
   showPresentation: "Presentation",
   back: "Back",
+  countryHistory:
+    "France has a rich and diverse history dating back to prehistoric times, with evidence of human habitation in the region dating back more than 1 million years.The Gauls, a Celtic tribe, were the dominant people in the region before it was conquered by the Roman Empire in the 1st century BC.After the fall of the Roman Empire, France was invaded by various Germanic tribes, and in the 5th century, the Franks emerged as the dominant power.Under the Merovingian and Carolingian dynasties, France became a major European power, and by the 13th century, it had become one of the most powerful monarchies in Europe.The French Revolution of 1789 marked a turning point in French history, leading to the overthrow of the monarchy and the establishment of the First French Republic.In the 19th and early 20th centuries, France played a major role in the colonialism and imperialism that characterized the era, and was also heavily involved in World War I and World War II.Since the end of World War II, France has become a leading member of the European Union, and is known for its contributions to art, culture, cuisine, and fashion.",
 };

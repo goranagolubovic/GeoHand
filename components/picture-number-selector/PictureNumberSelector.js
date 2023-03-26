@@ -1,33 +1,52 @@
-import React, { useState, useContext } from "react";
-import { View, Text } from "react-native";
+import React, { useState, useContext, useEffect } from "react";
+import { View, Text, Dimensions } from "react-native";
 import NumberSlider from "react-native-number-slider";
 import { useTranslation } from "react-i18next";
-import styles from "./PictureNumberSelector.style";
-import PictureNumberContext from "../../contexts/picture-number-context/picture-number-context";
+//import PictureNumberContext from "../../contexts/picture-number-context/picture-number-context";
 import PictureNumberProvider from "../../contexts/picture-number-context/PictureNumberProvider";
+import { PictureNumberContext } from "../../contexts/picture-number-context/PictureNumberProvider";
+import { useOrientation } from "../../hooks/use-orientation";
+import portraitStyles from "./PictureNumberSelectorPortrait.style";
+import landscapeStyles from "./PictureNumberSelectorLandscape.style";
+const PictureNumberSelector = (isPortrait) => {
+  const { width, height } = Dimensions.get("window");
+  const [valueHeight, setValueHeight] = useState(
+    width > height ? width : height
+  );
+  const [valueWidth, setValueWidth] = useState(height > width ? height : width);
 
-const PictureNumberSelector = () => {
   const { t } = useTranslation();
-  const number = useContext(PictureNumberContext);
-  const [pictureNumber, setPictureNumber] = useState(number.pictureNumber);
+  const { pictureNumber, setPictureNumber } = useContext(PictureNumberContext);
+  //const isPortrait = useOrientation();
 
   onValueChange = (value) => {
-    console.log(pictureNumber);
     setPictureNumber(value);
   };
 
+  // useEffect(() => {
+  //   isPortrait ? setValueHeight(height) : setValueHeight(width);
+  //   isPortrait ? setValueWidth(width) : setValueWidth(height);
+  // }, [isPortrait]);
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{t("common:pictureNumber")}</Text>
+    <View
+      style={isPortrait ? portraitStyles.container : landscapeStyles.container}
+    >
+      <Text style={isPortrait ? portraitStyles.title : landscapeStyles.title}>
+        {t("common:pictureNumber")}
+      </Text>
+      {/* <PictureNumberProvider value={{ pictureNumber, setPictureNumber }}> */}
       <NumberSlider
         onValueChange={onValueChange}
         value={pictureNumber}
-        width={200}
-        displayValues={[1, 2, 3, 4, 5]}
-        fontSize={15}
+        width={valueWidth * 0.3}
+        //height={valueHeight * 0.4}
+        displayValues={[1, 5, 10, 15, 20]}
+        fontSize={isPortrait ? valueWidth * 0.02 : valueHeight * 0.02}
         containerBackground="#f1f2f6"
         selectedBackground="#ffe2c8"
       />
+      {/* </PictureNumberProvider> */}
     </View>
   );
 };

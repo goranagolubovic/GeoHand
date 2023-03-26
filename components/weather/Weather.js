@@ -6,6 +6,8 @@ import { getWeathersData } from "../../api/services/weather-service";
 import { calculateCelziusTemp } from "../../util";
 import { Avatar } from "react-native-paper";
 import styles from "./Weather.style";
+import { useOrientation } from "../../hooks/use-orientation";
+import { Dimensions } from "react-native";
 const Weather = ({ name, lat, lon }) => {
   const [description, setDescription] = useState("");
   const [temp, setTemp] = useState(0.0);
@@ -13,6 +15,7 @@ const Weather = ({ name, lat, lon }) => {
   const [icon, setIcon] = useState("");
   const [date, setDate] = useState("");
   const { t } = useTranslation();
+  const isPortrait = useOrientation();
 
   const fetchWeathersData = async () => {
     const response = await getWeathersData(lat, lon);
@@ -48,8 +51,12 @@ const Weather = ({ name, lat, lon }) => {
         <View style={styles.content}>
           <View style={styles.temp}>
             <Avatar.Icon
-              size={58}
-              icon="thermometer-lines"
+              size={
+                isPortrait
+                  ? Dimensions.get("window").height * 0.06
+                  : Dimensions.get("window").width * 0.06
+              }
+              icon="thermometer"
               style={styles.tempIcon}
             />
             <Text style={styles.currentTemp}>{temp}°C</Text>

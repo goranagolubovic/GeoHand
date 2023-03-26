@@ -6,11 +6,6 @@ import SettingsScreen from "../screens/Settings/SettingsScreen";
 
 const navigationConfig = [
   {
-    name: "settings",
-    component: SettingsScreen,
-    image: "md-settings-outline",
-  },
-  {
     name: "generally",
     component: GenerallyScreen,
     image: "md-information-circle-outline",
@@ -30,6 +25,11 @@ const navigationConfig = [
     name: "news",
     component: NewsScreen,
     image: "md-today-outline",
+  },
+  {
+    name: "settings",
+    component: SettingsScreen,
+    image: "md-settings-outline",
   },
 ];
 export default navigationConfig;

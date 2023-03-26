@@ -7,22 +7,6 @@ import navigationConfig from "../constants/navigation";
 const Navigation = () => {
   const Drawer = createDrawerNavigator();
   const { t } = useTranslation();
-  const keys = [
-    "default",
-    "generally",
-    "settings",
-    "landmarks",
-    "cities",
-    "newa",
-  ];
-  // const [code,setCode]=useState("en");
-  // const [navigationConfig,setNavigationConfig]=useState(navigationEn);
-
-  // useEffect(()=>{
-  //     t('navigate:navigationConfig', { returnObjects: true }).forEach(element => {
-  //         console.log(elem)
-  //     });
-  // },[])
 
   return (
     <Drawer.Navigator

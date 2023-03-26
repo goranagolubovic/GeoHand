@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView, Text, Image, View } from "react-native";
 import { Button, Title } from "react-native-paper";
-import styles from "./LandmarkDetails.style";
 import { useTranslation } from "react-i18next";
 import { IconButton } from "react-native-paper";
 import { editLandmark } from "../../db/db";
+import { useOrientation } from "../../hooks/use-orientation";
+import portraitStyles from "./LandmarkDetailsPortrait.style";
+import landscapeStyles from "./LandmarkDetailsLandscape.style";
 
 const LandmarkDetails = ({
   name,
@@ -15,6 +17,7 @@ const LandmarkDetails = ({
   onDBChanged,
 }) => {
   const [isLiked, setIsLiked] = useState(favourite === 0 ? false : true);
+  const isPortrait = useOrientation();
   useEffect(() => {
     favourite === 0 ? setIsLiked(false) : setIsLiked(true);
     console.log(name + "   " + favourite);
@@ -29,9 +32,23 @@ const LandmarkDetails = ({
   };
   const { t } = useTranslation();
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.containerTitle}>
-        <Title style={styles.title}>{name}</Title>
+    <ScrollView
+      contentContainerStyle={
+        isPortrait ? portraitStyles.container : landscapeStyles.container
+      }
+    >
+      <View
+        style={
+          isPortrait
+            ? portraitStyles.containerTitle
+            : landscapeStyles.containerTitle
+        }
+      >
+        <Title
+          style={isPortrait ? portraitStyles.title : landscapeStyles.title}
+        >
+          {name}
+        </Title>
         <IconButton
           icon={isLiked === true ? "heart" : "heart-outline"}
           //color={isLiked ? "red" : "gray"}
@@ -39,13 +56,22 @@ const LandmarkDetails = ({
           onPress={handlePress}
         />
       </View>
-      <Image style={styles.image} source={{ uri: image }} />
-      <Text style={styles.details}>{details}</Text>
+      <Image
+        style={isPortrait ? portraitStyles.image : landscapeStyles.image}
+        source={{ uri: image }}
+      />
+      <Text
+        style={isPortrait ? portraitStyles.details : landscapeStyles.details}
+      >
+        {details}
+      </Text>
       {onAction && (
         <Button
-          style={styles.backButton}
+          style={
+            isPortrait ? portraitStyles.backButton : landscapeStyles.backButton
+          }
           icon="arrow-left"
-          labelStyle={styles.label}
+          labelStyle={isPortrait ? portraitStyles.label : landscapeStyles.label}
           onPress={onAction}
         >
           {t("common:back")}

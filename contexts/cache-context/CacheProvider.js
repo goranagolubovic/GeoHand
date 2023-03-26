@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import CacheContext from "./cache-context";
+import React, { useState, createContext } from "react";
 
-function CacheProvider(props) {
+export const CacheContext = createContext();
+const CacheProvider = (props) => {
   const [cache, setCache] = useState(false);
 
   return (
@@ -9,6 +9,6 @@ function CacheProvider(props) {
       {props.children}
     </CacheContext.Provider>
   );
-}
+};
 
 export default CacheProvider;

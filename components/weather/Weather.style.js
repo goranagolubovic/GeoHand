@@ -1,11 +1,14 @@
 import { StyleSheet } from "react-native";
-
+import { Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
+const valueHeight = width > height ? width : height;
+const valueWidth = height > width ? height : width;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
-    gap: 20,
+    gap: valueWidth * 0.05,
   },
   content: {
     flexDirection: "column",
@@ -13,11 +16,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   icon: {
-    width: 150,
-    height: 150,
+    width: valueWidth * 0.2,
+    height: valueWidth * 0.2,
   },
   currentTemp: {
-    fontSize: 40,
+    fontSize: valueWidth * 0.04,
   },
   temp: {
     display: "flex",
@@ -27,10 +30,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffe2c8",
   },
   info: {
-    fontSize: 15,
+    fontSize: valueWidth * 0.02,
   },
   place: {
-    fontSize: 20,
+    fontSize: valueWidth * 0.02,
   },
   centralContainer: {
     alignItems: "center",

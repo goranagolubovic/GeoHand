@@ -9,8 +9,10 @@ import { removeTags, removeUnecessaryInfos } from "../../util";
 import { Divider, Button, IconButton } from "react-native-paper";
 import { get } from "../../api/services/client";
 import Weather from "../../components/weather/Weather";
-import styles from "./CityDetails.style";
 import CityPresentation from "../../features/city-presentation/CityPresentation";
+import { useOrientation } from "../../hooks/use-orientation";
+import portraitStyles from "./CityDetailsPortrait.style";
+import landscapeStyles from "./CityDetailsLandscape.style";
 
 const CityDetails = (city) => {
   const [info, setInfo] = useState("");
@@ -18,6 +20,7 @@ const CityDetails = (city) => {
   const [weatherModalVisible, setWeatherweatherModalVisible] = useState(false);
   const [presentaionModalVisible, setPresentaionModalVisible] = useState(false);
   const { t } = useTranslation();
+  const isPortrait = useOrientation();
 
   const toogleWeatherModal = () => {
     setWeatherweatherModalVisible(!weatherModalVisible);
@@ -45,32 +48,67 @@ const CityDetails = (city) => {
   };
 
   useEffect(() => {
-    findCityDetails();
+    // findCityDetails();
     findBasicInfo();
   });
 
   return (
     <View>
-      <View style={styles.container}>
-        <Text style={styles.name}>{city.city.name}</Text>
-        <View style={styles.basicInfos}>
-          <Text style={styles.content}>
+      <View
+        style={
+          isPortrait ? portraitStyles.container : landscapeStyles.container
+        }
+      >
+        <Text style={isPortrait ? portraitStyles.name : landscapeStyles.name}>
+          {city.city.name}
+        </Text>
+        <View
+          style={
+            isPortrait ? portraitStyles.basicInfos : landscapeStyles.basicInfos
+          }
+        >
+          <Text
+            style={
+              isPortrait ? portraitStyles.content : landscapeStyles.content
+            }
+          >
             {t("common:population")} : {population}
           </Text>
-          <Text style={styles.content}>
+          <Text
+            style={
+              isPortrait ? portraitStyles.content : landscapeStyles.content
+            }
+          >
             {t("common:lat")} : {city.city.lat}
           </Text>
-          <Text style={styles.content}>
+          <Text
+            style={
+              isPortrait ? portraitStyles.content : landscapeStyles.content
+            }
+          >
             {t("common:lon")} : {city.city.lon}
           </Text>
         </View>
-        <Text>{info}</Text>
-        <View style={styles.buttonContainer}>
+        <Text
+          style={isPortrait ? portraitStyles.details : landscapeStyles.details}
+        >
+          {city.city.description}
+        </Text>
+        <View
+          style={
+            isPortrait
+              ? portraitStyles.buttonContainer
+              : landscapeStyles.buttonContainer
+          }
+        >
           <Button
             icon="weather-cloudy"
             mode="contained"
             onPress={toogleWeatherModal}
-            contentStyle={{ backgroundColor: "#1c2520" }}
+            style={
+              isPortrait ? portraitStyles.weather : landscapeStyles.weather
+            }
+            labelStyle={{ color: "#144e5a" }}
           >
             {t("common:weatherForecast")}
           </Button>
@@ -78,7 +116,11 @@ const CityDetails = (city) => {
             icon="presentation-play"
             mode="contained"
             onPress={tooglePresentationModal}
-            contentStyle={{ backgroundColor: "#1c2520" }}
+            style={
+              isPortrait
+                ? portraitStyles.presentation
+                : landscapeStyles.presentation
+            }
           >
             {t("common:showPresentation")}
           </Button>
@@ -90,10 +132,24 @@ const CityDetails = (city) => {
           onRequestClose={toogleWeatherModal}
           onPress={toogleWeatherModal}
         >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
+          <View
+            style={
+              isPortrait
+                ? portraitStyles.centeredViewWeather
+                : landscapeStyles.centeredViewWeather
+            }
+          >
+            <View
+              style={
+                isPortrait
+                  ? portraitStyles.modalViewWeather
+                  : landscapeStyles.modalViewWeather
+              }
+            >
               <IconButton
-                style={styles.close}
+                style={
+                  isPortrait ? portraitStyles.close : landscapeStyles.close
+                }
                 icon="close"
                 mode="contained"
                 onPress={toogleWeatherModal}
@@ -131,10 +187,24 @@ const CityDetails = (city) => {
           onRequestClose={tooglePresentationModal}
           onPress={tooglePresentationModal}
         >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
+          <View
+            style={
+              isPortrait
+                ? portraitStyles.centeredView
+                : landscapeStyles.centeredView
+            }
+          >
+            <View
+              style={
+                isPortrait
+                  ? portraitStyles.modalView
+                  : landscapeStyles.modalView
+              }
+            >
               <IconButton
-                style={styles.close}
+                style={
+                  isPortrait ? portraitStyles.close : landscapeStyles.close
+                }
                 icon="close"
                 mode="contained"
                 onPress={tooglePresentationModal}

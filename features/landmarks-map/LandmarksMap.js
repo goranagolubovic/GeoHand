@@ -74,6 +74,7 @@ const LandmarksMap = () => {
   useEffect(() => {
     console.log("mountained landmarks map");
     setLandMarksData(fetchLandmarksTable());
+
     // setDBChanged(false);
   }, []);
   useEffect(() => {

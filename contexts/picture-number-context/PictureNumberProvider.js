@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PictureNumberContext from "./picture-number-context";
+import React, { createContext, useState } from "react";
+export const PictureNumberContext = createContext();
 
-function PictureNumberProvider(props) {
-  const [pictureNumber, setPictureNumber] = useState(5);
+const PictureNumberProvider = ({ children }) => {
+  const [pictureNumber, setPictureNumber] = useState(20);
+
   return (
     <PictureNumberContext.Provider value={{ pictureNumber, setPictureNumber }}>
-      {props.children}
+      {children}
     </PictureNumberContext.Provider>
   );
-}
-
+};
 export default PictureNumberProvider;
