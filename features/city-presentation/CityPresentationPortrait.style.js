@@ -15,7 +15,8 @@ const portraitStyles = StyleSheet.create({
   spinner: {
     width: valueWidth * 0.33,
     height: valueWidth * 0.25,
-    padding: valueWidth * 0.33,
+    justifyContent: "center",
+    alignItems: "center",
   },
   innerContainer: {
     flexDirection: "column",
