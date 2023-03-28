@@ -23,9 +23,6 @@ const portraitStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  switchButton: {
-    //transform: [{ scaleX: .8 }, { scaleY: .8 }]
-  },
 });
 
 export default portraitStyles;

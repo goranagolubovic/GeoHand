@@ -1,7 +1,6 @@
 import {
   COUNTRY_REGIONS_API,
   CITIES_API_URL,
-  CITY_DETAILS_API_URL,
   BASIC_CITY_INFO_URL,
   PIXABAY_API,
   PIXABAY_API_KEY,
@@ -18,22 +17,12 @@ const getRegions = async (code) => {
 };
 
 const getCities = async (code, region) => {
-  console.log("called");
   const response = await get(
     CITIES_API_URL +
       code +
       "/search?region=" +
       region +
       "&key=00000000000000000000000000000000"
-  );
-  return response;
-  console.log("called");
-};
-
-const getCityDetails = async (name) => {
-  let modifiedName = name.charAt(0).toLowerCase() + name.slice(1);
-  const response = await get(
-    CITY_DETAILS_API_URL + modifiedName + "/scores/?categories=history"
   );
   return response;
 };
@@ -70,7 +59,6 @@ const getCityVideos = async (name) => {
 export {
   getRegions,
   getCities,
-  getCityDetails,
   getCityBasicInfo,
   getCityPhotos,
   getCityVideos,

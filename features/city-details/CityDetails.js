@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, Modal } from "react-native";
-import {
-  getCityBasicInfo,
-  getCityDetails,
-} from "../../api/services/cities-service";
-import { removeTags, removeUnecessaryInfos } from "../../util";
+import { getCityBasicInfo } from "../../api/services/cities-service";
 import { Divider, Button, IconButton } from "react-native-paper";
 import { get } from "../../api/services/client";
 import Weather from "../../components/weather/Weather";
 import CityPresentation from "../../features/city-presentation/CityPresentation";
 import { useOrientation } from "../../hooks/use-orientation";
+
 import portraitStyles from "./CityDetailsPortrait.style";
 import landscapeStyles from "./CityDetailsLandscape.style";
 
 const CityDetails = (city) => {
-  const [info, setInfo] = useState("");
   const [population, setPopulation] = useState(0);
   const [weatherModalVisible, setWeatherweatherModalVisible] = useState(false);
   const [presentaionModalVisible, setPresentaionModalVisible] = useState(false);
@@ -25,16 +21,9 @@ const CityDetails = (city) => {
   const toogleWeatherModal = () => {
     setWeatherweatherModalVisible(!weatherModalVisible);
   };
+
   const tooglePresentationModal = () => {
     setPresentaionModalVisible(!presentaionModalVisible);
-  };
-
-  const findCityDetails = async () => {
-    const response = await getCityDetails(city.city.name);
-    const responseData = await response.json();
-    const stringWithRemovedTags = removeTags(responseData.summary);
-    const infos = removeUnecessaryInfos(stringWithRemovedTags);
-    setInfo(infos);
   };
 
   const findBasicInfo = async () => {
@@ -48,7 +37,6 @@ const CityDetails = (city) => {
   };
 
   useEffect(() => {
-    // findCityDetails();
     findBasicInfo();
   });
 
@@ -169,15 +157,6 @@ const CityDetails = (city) => {
                 padding: 10,
               }}
             ></View>
-
-            {/* <Button
-              icon="weather-cloudy"
-              mode="contained"
-              onPress={toogleWeatherModal}
-              contentStyle={{ backgroundColor: "#1c2520" }}
-            >
-              Close
-            </Button> */}
           </View>
         </Modal>
         <Modal
@@ -220,15 +199,6 @@ const CityDetails = (city) => {
                 padding: 10,
               }}
             ></View>
-
-            {/* <Button
-              icon="weather-cloudy"
-              mode="contained"
-              onPress={toogleWeatherModal}
-              contentStyle={{ backgroundColor: "#1c2520" }}
-            >
-              Close
-            </Button> */}
           </View>
         </Modal>
       </View>

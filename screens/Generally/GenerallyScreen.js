@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, Dimensions } from "react-native";
-import { Searchbar, Card, Title, Paragraph } from "react-native-paper";
+import { View, Text, ScrollView } from "react-native";
+import { Title, Paragraph } from "react-native-paper";
 import { getCountryData } from "../../api/services/countries-service";
 import Spinner from "../../components/spinner/Spinner";
 import { Image } from "react-native";
@@ -8,30 +8,15 @@ import { useTranslation } from "react-i18next";
 import portraitStyles from "./GenerallyScreenPortrait.style";
 import landscapeStyles from "./GenerallyScreenLandscape.style";
 import { useOrientation } from "../../hooks/use-orientation";
-import { fetchCitiesFromDB, fetchLandmarksFromDB } from "../../db/db";
 
 const GenerallyScreen = () => {
-  const [capitalCity, setCapitalCity] = React.useState("");
-  const [flag, setFlag] = React.useState("");
-  const [population, setPopulation] = React.useState("");
-  const [area, setArea] = React.useState("");
+  const [capitalCity, setCapitalCity] = useState("");
+  const [flag, setFlag] = useState("");
+  const [population, setPopulation] = useState("");
+  const [area, setArea] = useState("");
   const { t } = useTranslation();
-  //const [isPortrait, setIsPortrait] = useState(true);
   const isPortrait = useOrientation();
-  // useEffect(() => {
-  //   const updateOrientation = () => {
-  //     const { width, height } = Dimensions.get("window");
-  //     const value = height > width;
-  //     setIsPortrait(value);
-  //   };
-  //   Dimensions.addEventListener("change", updateOrientation);
-  //   updateOrientation();
 
-  //   // Remove the event listener when the component unmounts
-  //   // return () => {
-  //   //   Dimensions.removeEventListener("change", updateOrientation);
-  //   // };
-  // }, []);
   const fetchInfos = async () => {
     const response = await getCountryData("France");
     const responseData = await response.json();
@@ -45,10 +30,9 @@ const GenerallyScreen = () => {
       setArea(responseData[0].area);
     } catch (ex) {}
   };
+
   useEffect(() => {
     fetchInfos();
-    // fetchCitiesFromDB();
-    // fetchLandmarksFromDB();
   }, []);
 
   return (

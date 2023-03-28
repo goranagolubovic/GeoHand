@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
 import { ScrollView } from "react-native";
 import { Divider } from "react-native-paper";
 import { fetchLandmarksTable } from "../../db/db";
@@ -17,6 +16,7 @@ const LandmarksDetails = () => {
   useEffect(() => {
     getInfos();
   }, []);
+
   useEffect(() => {
     getInfos();
   }, [dbChanged]);

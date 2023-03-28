@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+
 const { width, height } = Dimensions.get("window");
 const valueHeight = width > height ? width : height;
 const valueWidth = height > width ? height : width;
+
 const portraitStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -13,10 +15,6 @@ const portraitStyles = StyleSheet.create({
     borderRadius: valueHeight * 0.02,
   },
   content: {
-    // marginTop: 60,
-    // width: 300,
-    // height: 300,
-    //flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },

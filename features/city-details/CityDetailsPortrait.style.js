@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+
 const { width, height } = Dimensions.get("window");
 const valueHeight = width > height ? width : height;
 const valueWidth = height > width ? height : width;
+
 const portraitStyles = StyleSheet.create({
   container: {
     display: "flex",
-    //justifyContent: "center",
     alignItems: "center",
     margin: valueHeight * 0.02,
   },
@@ -79,9 +80,7 @@ const portraitStyles = StyleSheet.create({
     elevation: 5,
   },
   close: {
-    // display: "flex",
     alignSelf: "flex-end",
-    // justifyContent: "space-evenly",
   },
   buttonContainer: {
     width: "100%",

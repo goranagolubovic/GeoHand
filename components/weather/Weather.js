@@ -1,13 +1,14 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Image, ImageBackground } from "react-native";
-import { View, Text } from "react-native";
+import { Image } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import { getWeathersData } from "../../api/services/weather-service";
 import { calculateCelziusTemp } from "../../util";
 import { Avatar } from "react-native-paper";
-import styles from "./Weather.style";
 import { useOrientation } from "../../hooks/use-orientation";
-import { Dimensions } from "react-native";
+
+import styles from "./Weather.style";
+
 const Weather = ({ name, lat, lon }) => {
   const [description, setDescription] = useState("");
   const [temp, setTemp] = useState(0.0);

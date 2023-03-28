@@ -1,12 +1,13 @@
 import { StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
+
 const { width, height } = Dimensions.get("window");
 const valueHeight = width > height ? width : height;
 const valueWidth = height > width ? height : width;
+
 const landscapeStyles = StyleSheet.create({
   container: {
     display: "flex",
-    //justifyContent: "center",
     alignItems: "center",
     margin: valueWidth * 0.02,
   },
@@ -78,9 +79,7 @@ const landscapeStyles = StyleSheet.create({
     elevation: 5,
   },
   close: {
-    // display: "flex",
     alignSelf: "flex-end",
-    // justifyContent: "space-evenly",
   },
   buttonContainer: {
     width: "100%",

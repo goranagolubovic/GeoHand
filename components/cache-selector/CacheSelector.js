@@ -1,18 +1,17 @@
 import React from "react";
-import { View, Text, Slider } from "react-native";
+import { View, Text } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Switch } from "react-native-paper";
-
 import { CacheContext } from "../../contexts/cache-context/CacheProvider";
 import { useContext } from "react";
-import { useOrientation } from "../../hooks/use-orientation";
+
 import portraitStyles from "./CacheSelectorPortrait.style";
 import landscapeStyles from "./CacheSelectorLandscape.style";
 
 const CacheSelector = (isPortrait) => {
   const { t } = useTranslation();
   const { cache, setCache } = useContext(CacheContext);
-  //const isPortrait = useOrientation();
+
   const onToggleSwitch = () => {
     setCache(!cache);
   };

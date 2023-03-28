@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
-import { useOrientation } from "../../hooks/use-orientation";
+
 import portraitStyles from "./LanguageSelectorPortrait.style";
 import landscapeStyles from "./LanguageSelectorLandscape.style";
 
@@ -17,7 +17,7 @@ const LANGUAGES = [
 const LanguageSelector = (isPortrait) => {
   const { t, i18n } = useTranslation();
   const selectedLanguageCode = i18n.language;
-  //const isPortrait = useOrientation();
+
   const setLanguage = (code) => {
     i18n.changeLanguage(code);
   };

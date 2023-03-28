@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { IconButton } from "react-native-paper";
 import { editLandmark } from "../../db/db";
 import { useOrientation } from "../../hooks/use-orientation";
+
 import portraitStyles from "./LandmarkDetailsPortrait.style";
 import landscapeStyles from "./LandmarkDetailsLandscape.style";
 
@@ -18,10 +19,7 @@ const LandmarkDetails = ({
 }) => {
   const [isLiked, setIsLiked] = useState(favourite === 0 ? false : true);
   const isPortrait = useOrientation();
-  useEffect(() => {
-    favourite === 0 ? setIsLiked(false) : setIsLiked(true);
-    console.log(name + "   " + favourite);
-  }, [favourite]);
+  const { t } = useTranslation();
 
   const handlePress = () => {
     const fav = isLiked === true ? 0 : 1;
@@ -30,7 +28,11 @@ const LandmarkDetails = ({
       onDBChanged(updatedRecord);
     });
   };
-  const { t } = useTranslation();
+
+  useEffect(() => {
+    favourite === 0 ? setIsLiked(false) : setIsLiked(true);
+  }, [favourite]);
+
   return (
     <ScrollView
       contentContainerStyle={
@@ -51,7 +53,6 @@ const LandmarkDetails = ({
         </Title>
         <IconButton
           icon={isLiked === true ? "heart" : "heart-outline"}
-          //color={isLiked ? "red" : "gray"}
           size={24}
           onPress={handlePress}
         />

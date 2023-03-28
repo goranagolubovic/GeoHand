@@ -3,6 +3,7 @@ import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabase("GeoHand.db", () => {});
 let rowArrayCities = [];
 let rowArrayLandmarks = [];
+
 const cities = [
   {
     name: "Paris",
@@ -214,7 +215,6 @@ export const fetchCitiesFromDB = () => {
 
 export const fetchLandmarksFromDB = () => {
   db.transaction((tx) => {
-    //tx.executeSql("DROP TABLE IF EXISTS landmarks");
     tx.executeSql(
       "CREATE TABLE IF NOT EXISTS landmarks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,details TEXT,image TEXT,favourite NUMBER)",
       [],
@@ -250,63 +250,6 @@ export const fetchLandmarksFromDB = () => {
   });
 };
 
-const createTableCity = () => {
-  db.transaction((tx) => {
-    tx.executeSql(
-      "CREATE TABLE if not exists  city (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)",
-      [],
-      (_, result) => {
-        if (result.rowsAffected > 0) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-      (_, error) => {
-        console.log("Error creating table:", error);
-      }
-    );
-  });
-};
-
-const fillTableCity = () => {
-  db.transaction((tx) => {
-    cities.forEach((elem) => {
-      tx.executeSql(
-        "INSERT INTO city (name,lat,lon,country,description) VALUES (?,?,?,?,?)",
-        [elem.name, elem.lat, elem.lon, elem.country, elem.description]
-      );
-    });
-  });
-};
-
-const createTableLandmarks = () => {
-  db.transaction((tx) => {
-    tx.executeSql(
-      "CREATE TABLE if not exists landmarks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,details TEXT,image TEXT,favourite NUMBER)"
-    );
-  });
-};
-
-const fillTableLandmarks = () => {
-  db.transaction((tx) => {
-    landmarks.forEach((elem) => {
-      tx.executeSql(
-        "INSERT INTO landmarks (name,lat,lon,country,details,image,favourite) VALUES (?,?,?,?,?,?,?)",
-        [
-          elem.name,
-          elem.lat,
-          elem.lon,
-          elem.country,
-          elem.details,
-          elem.image,
-          elem.favorite,
-        ]
-      );
-    });
-  });
-};
-
 export const fetchCitiesTable = async () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -320,9 +263,9 @@ export const fetchCitiesTable = async () => {
             for (let i = 0; i < rows.length; i++) {
               rowArrayCities.push(rows.item(i));
             }
-            resolve(rowArrayCities); // Resolve with the rowArrayCities when the transaction is completed
+            resolve(rowArrayCities);
           },
-          (_, error) => reject(error) // Reject with the error if the transaction fails
+          (_, error) => reject(error)
         );
       }
     });
@@ -342,34 +285,14 @@ export const fetchLandmarksTable = async () => {
             for (let i = 0; i < rows.length; i++) {
               rowArrayLandmarks.push(rows.item(i));
             }
-            resolve(rowArrayLandmarks); // Resolve with the rowArrayCities when the transaction is completed
+            resolve(rowArrayLandmarks);
           },
-          (_, error) => reject(error) // Reject with the error if the transaction fails
+          (_, error) => reject(error)
         );
       }
     });
   });
 };
-
-// export const fetchDataFromDB = (data) => {
-//   db.transaction((tx) => {
-//     rowArray = [];
-//     if (rowArray.length == 0) {
-//       tx.executeSql(
-//         `SELECT * FROM ` + data,
-//         [],
-//         (_, result) => {
-//           const rows = result.rows;
-//           for (let i = 0; i < rows.length; i++) {
-//             rowArray.push(rows.item(i));
-//           }
-//         },
-//         (_, error) => console.log(error)
-//       );
-//     }
-//   });
-//   return rowArray;
-// };
 
 export const editLandmark = (favourite, name, callback) => {
   db.transaction((tx) => {
@@ -377,14 +300,12 @@ export const editLandmark = (favourite, name, callback) => {
       "UPDATE landmarks SET favourite = ? WHERE name = ?",
       [favourite, name],
       (tx, results) => {
-        //console.log("Results", results.rowsAffected);
         if (results.rowsAffected > 0) {
           tx.executeSql(
             "SELECT * FROM landmarks WHERE name = ?",
             [name],
             (_, { rows: { _array } }) => callback(_array[0])
           );
-          //console.log("Record Updated Successfully...");
         } else console.log("Error");
       }
     );

@@ -5,6 +5,7 @@ import { fetchCitiesTable } from "../../db/db";
 
 const CitiesDetails = () => {
   const [citiesData, setCitiesData] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchCitiesTable();
@@ -12,6 +13,7 @@ const CitiesDetails = () => {
     };
     fetchData();
   }, []);
+
   return (
     <ScrollView>
       {citiesData.map((elem) => (

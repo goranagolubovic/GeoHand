@@ -4,15 +4,12 @@ import { fetchCitiesTable } from "../../db/db";
 
 const CountryMap = () => {
   const [citiesData, setCitiesData] = useState([]);
+
   const fetchInfos = async () => {
     const response = await fetchCitiesTable();
     setCitiesData(response);
   };
-  useEffect(() => {
-    fetchInfos();
-    // fetchCitiesFromDB();
-    // fetchLandmarksFromDB();
-  }, []);
+
   useEffect(() => {
     fetchInfos();
   }, []);
