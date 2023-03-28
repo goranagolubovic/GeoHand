@@ -8,25 +8,23 @@ import LandmarkDetails from "../landmark-details/LandmarkDetails";
 const LandmarksDetails = () => {
   const [landMarksData, setLandMarksData] = useState([]);
   const [dbChanged, setDBChanged] = useState(null);
+
+  const getInfos = async () => {
+    const result = await fetchLandmarksTable();
+    setLandMarksData(result);
+  };
+
   useEffect(() => {
-    console.log("mountained landmarks map");
-    setLandMarksData(fetchLandmarksTable());
-    // setDBChanged(false);
+    getInfos();
   }, []);
   useEffect(() => {
-    console.log("mountained landmarks map");
-    setLandMarksData(fetchLandmarksTable());
-    // setDBChanged(false);
+    getInfos();
   }, [dbChanged]);
 
-  const onLandmarkChanged = (array) => {
-    setLandMarksData(array);
-    console.log(landMarksData);
-  };
   return (
     <ScrollView>
       {landMarksData.map((landmark) => (
-        <View key={landmark.name}>
+        <ScrollView key={landmark.name}>
           <LandmarkDetails
             name={landmark.name}
             details={landmark.details}
@@ -36,7 +34,7 @@ const LandmarksDetails = () => {
             onDBChanged={(value) => setDBChanged(value)}
           />
           <Divider bold={true} />
-        </View>
+        </ScrollView>
       ))}
     </ScrollView>
   );

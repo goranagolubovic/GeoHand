@@ -19,7 +19,7 @@ const portraitStyles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: valueWidth * 0.02,
+    marginBottom: valueWidth * 0.03,
   },
   title: {
     fontWeight: "bold",

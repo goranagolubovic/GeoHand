@@ -7,6 +7,7 @@ import "./constants/IMLocalize";
 import { QueryClient, QueryClientProvider } from "react-query";
 import PictureNumberProvider from "./contexts/picture-number-context/PictureNumberProvider";
 import CacheProvider from "./contexts/cache-context/CacheProvider";
+import { fetchCitiesFromDB, fetchLandmarksFromDB } from "./db/db";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,6 +18,10 @@ const queryClient = new QueryClient({
 });
 
 export default function App() {
+  // useEffect(() => {
+  //   fetchCitiesFromDB();
+  //   fetchLandmarksFromDB();
+  // }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <PictureNumberProvider>

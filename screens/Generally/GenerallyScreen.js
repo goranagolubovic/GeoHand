@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import portraitStyles from "./GenerallyScreenPortrait.style";
 import landscapeStyles from "./GenerallyScreenLandscape.style";
 import { useOrientation } from "../../hooks/use-orientation";
+import { fetchCitiesFromDB, fetchLandmarksFromDB } from "../../db/db";
 
 const GenerallyScreen = () => {
   const [capitalCity, setCapitalCity] = React.useState("");
@@ -46,6 +47,8 @@ const GenerallyScreen = () => {
   };
   useEffect(() => {
     fetchInfos();
+    // fetchCitiesFromDB();
+    // fetchLandmarksFromDB();
   }, []);
 
   return (
@@ -93,7 +96,14 @@ const GenerallyScreen = () => {
             <Text>
               {t("common:area")}: {area}
             </Text>
-            <Text> {t("common:countryHistory")}</Text>
+            <Text
+              style={
+                isPortrait ? portraitStyles.history : landscapeStyles.history
+              }
+            >
+              {" "}
+              {t("common:countryHistory")}
+            </Text>
           </View>
         </ScrollView>
       )}

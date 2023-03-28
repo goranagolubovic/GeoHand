@@ -179,50 +179,92 @@ const landmarks = [
 
 export const fetchCitiesFromDB = () => {
   db.transaction((tx) => {
-    tx.executeSql("DROP table if exists city;");
-    createTableCity();
-    fillTableCity();
-    return fetchCitiesTable();
-    // tx.executeSql(
-    //   'SELECT name FROM sqlite_master WHERE type="table" and name="city"',
-    //   [],
-    //   (tx, result) => {
-    //     if (result.rows.length == 0) {
-    //       console.log("Creat");
-    //       createTable();
-    //       fillTable();
-    //     }
-    //     return fetchDataFromDB("city");
-    //   }
-    // );
+    tx.executeSql(
+      "CREATE TABLE  IF NOT EXISTS city(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)",
+      [],
+      () => {
+        tx.executeSql(
+          "SELECT count(*) as count FROM city",
+          [],
+          (_, result) => {
+            const count = result.rows.item(0).count;
+            if (count === 0) {
+              cities.forEach((elem) => {
+                tx.executeSql(
+                  "INSERT INTO city (name,lat,lon,country,description) VALUES (?,?,?,?,?)",
+                  [
+                    elem.name,
+                    elem.lat,
+                    elem.lon,
+                    elem.country,
+                    elem.description,
+                  ]
+                );
+              });
+            }
+          },
+          (_, error) => {
+            console.log("Error while checking table: " + error);
+          }
+        );
+      }
+    );
   });
 };
 
 export const fetchLandmarksFromDB = () => {
   db.transaction((tx) => {
-    tx.executeSql("DROP table if exists landmarks;");
-    createTableLandmarks();
-    fillTableLandmarks();
-    return fetchLandmarksTable();
-    // tx.executeSql(
-    //   'SELECT name FROM sqlite_master WHERE type="table" and name="city"',
-    //   [],
-    //   (tx, result) => {
-    //     if (result.rows.length == 0) {
-    //       console.log("Creat");
-    //       createTable();
-    //       fillTable();
-    //     }
-    //     return fetchDataFromDB("city");
-    //   }
-    // );
+    //tx.executeSql("DROP TABLE IF EXISTS landmarks");
+    tx.executeSql(
+      "CREATE TABLE IF NOT EXISTS landmarks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,details TEXT,image TEXT,favourite NUMBER)",
+      [],
+      () => {
+        tx.executeSql(
+          "SELECT count(*) as count FROM landmarks",
+          [],
+          (_, result) => {
+            const count = result.rows.item(0).count;
+            if (count === 0) {
+              landmarks.forEach((elem) => {
+                tx.executeSql(
+                  "INSERT INTO landmarks (name,lat,lon,country,details,image,favourite) VALUES (?,?,?,?,?,?,?)",
+                  [
+                    elem.name,
+                    elem.lat,
+                    elem.lon,
+                    elem.country,
+                    elem.details,
+                    elem.image,
+                    elem.favorite,
+                  ]
+                );
+              });
+            }
+          },
+          (_, error) => {
+            console.log("Error while checking table: " + error);
+          }
+        );
+      }
+    );
   });
 };
 
 const createTableCity = () => {
   db.transaction((tx) => {
     tx.executeSql(
-      "CREATE TABLE if not exists city (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)"
+      "CREATE TABLE if not exists  city (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)",
+      [],
+      (_, result) => {
+        if (result.rowsAffected > 0) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      (_, error) => {
+        console.log("Error creating table:", error);
+      }
     );
   });
 };
@@ -265,44 +307,48 @@ const fillTableLandmarks = () => {
   });
 };
 
-export const fetchCitiesTable = () => {
-  db.transaction((tx) => {
-    rowArrayCities = [];
-    if (rowArrayCities.length == 0) {
-      tx.executeSql(
-        `SELECT * FROM city`,
-        [],
-        (_, result) => {
-          const rows = result.rows;
-          for (let i = 0; i < rows.length; i++) {
-            rowArrayCities.push(rows.item(i));
-          }
-        },
-        (_, error) => console.log(error)
-      );
-    }
+export const fetchCitiesTable = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      rowArrayCities = [];
+      if (rowArrayCities.length == 0) {
+        tx.executeSql(
+          `SELECT * FROM city`,
+          [],
+          (_, result) => {
+            const rows = result.rows;
+            for (let i = 0; i < rows.length; i++) {
+              rowArrayCities.push(rows.item(i));
+            }
+            resolve(rowArrayCities); // Resolve with the rowArrayCities when the transaction is completed
+          },
+          (_, error) => reject(error) // Reject with the error if the transaction fails
+        );
+      }
+    });
   });
-  return rowArrayCities;
 };
 
-export const fetchLandmarksTable = () => {
-  db.transaction((tx) => {
-    rowArrayLandmarks = [];
-    if (rowArrayLandmarks.length == 0) {
-      tx.executeSql(
-        `SELECT * FROM landmarks`,
-        [],
-        (_, result) => {
-          const rows = result.rows;
-          for (let i = 0; i < rows.length; i++) {
-            rowArrayLandmarks.push(rows.item(i));
-          }
-        },
-        (_, error) => console.log(error)
-      );
-    }
+export const fetchLandmarksTable = async () => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      rowArrayLandmarks = [];
+      if (rowArrayLandmarks.length == 0) {
+        tx.executeSql(
+          `SELECT * FROM landmarks`,
+          [],
+          (_, result) => {
+            const rows = result.rows;
+            for (let i = 0; i < rows.length; i++) {
+              rowArrayLandmarks.push(rows.item(i));
+            }
+            resolve(rowArrayLandmarks); // Resolve with the rowArrayCities when the transaction is completed
+          },
+          (_, error) => reject(error) // Reject with the error if the transaction fails
+        );
+      }
+    });
   });
-  return rowArrayLandmarks;
 };
 
 // export const fetchDataFromDB = (data) => {

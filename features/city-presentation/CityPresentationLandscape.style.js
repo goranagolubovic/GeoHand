@@ -15,7 +15,8 @@ const landscapeStyles = StyleSheet.create({
   spinner: {
     width: valueHeight * 0.33,
     height: valueHeight * 0.25,
-    padding: valueHeight * 0.33,
+    justifyContent: "center",
+    alignItems: "center",
   },
   innerContainer: {
     flexDirection: "row",

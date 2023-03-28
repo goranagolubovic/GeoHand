@@ -45,6 +45,9 @@ const landscapeStyles = StyleSheet.create({
     margin: valueWidth * 0.02,
     gap: valueWidth * 0.01,
   },
+  history: {
+    textAlign: "center",
+  },
 });
 
 export default landscapeStyles;

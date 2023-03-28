@@ -87,19 +87,20 @@ const landscapeStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    gap: valueHeight * 0.02,
+    gap: valueHeight * 0.03,
   },
   details: {
     padding: valueWidth * 0.03,
+    textAlign: "center",
   },
   weather: {
     backgroundColor: "#fff",
     borderColor: "#144e5a",
-    borderWidth: valueHeight * 0.005,
+    borderWidth: valueHeight * 0.003,
   },
   presentation: {
     backgroundColor: "#144e5a",
-    borderWidth: valueHeight * 0.005,
+    borderWidth: valueHeight * 0.003,
     borderColor: "#144e5a",
   },
 });

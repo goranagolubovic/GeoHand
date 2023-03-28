@@ -88,19 +88,20 @@ const portraitStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    gap: valueWidth * 0.02,
+    gap: valueWidth * 0.03,
   },
   details: {
     padding: valueHeight * 0.03,
+    textAlign: "center",
   },
   weather: {
     backgroundColor: "#fff",
     borderColor: "#144e5a",
-    borderWidth: valueWidth * 0.005,
+    borderWidth: valueWidth * 0.003,
   },
   presentation: {
     backgroundColor: "#144e5a",
-    borderWidth: valueWidth * 0.005,
+    borderWidth: valueWidth * 0.003,
     borderColor: "#144e5a",
   },
 });

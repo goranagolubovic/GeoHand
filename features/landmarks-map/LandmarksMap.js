@@ -71,15 +71,19 @@ const LandmarksMap = () => {
     setLandmarkImage(image);
     setFavourite(favourite);
   };
+  const getInfos = async () => {
+    const result = await fetchLandmarksTable();
+    setLandMarksData(result);
+  };
   useEffect(() => {
     console.log("mountained landmarks map");
-    setLandMarksData(fetchLandmarksTable());
+    getInfos();
 
     // setDBChanged(false);
   }, []);
   useEffect(() => {
     console.log("Landmark Detail use effect happened");
-    setLandMarksData(fetchLandmarksTable());
+    getInfos();
     // setDBChanged(false);
   }, [landmark, dbChanged]);
 

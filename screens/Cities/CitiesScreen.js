@@ -8,6 +8,7 @@ import { getRegions, getCities } from "../../api/services/cities-service";
 import Spinner from "../../components/spinner/Spinner";
 import { Country, State, City } from "country-state-city";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
 import * as SQLite from "expo-sqlite";
 //import * as FileSystem from "expo-file-system";
 import { Asset } from "expo-asset";
@@ -20,6 +21,7 @@ import { FileSystem } from "expo";
 import { BottomNavigation, BottomNavigationTab } from "react-native-paper";
 import CountryMap from "../../features/country-map/CountryMap";
 import CitiesDetails from "../../features/cities-details/CitiesDetails";
+import GenerallyScreen from "../Generally/GenerallyScreen";
 
 // const db=SQLite.openDatabase({
 //   name:'GeoHand.db',
@@ -36,6 +38,7 @@ import CitiesDetails from "../../features/cities-details/CitiesDetails";
 // const db = SQLite.openDatabase('GeoHand.db', undefined, undefined, undefined, undefined, {location: dbAssetURI});
 // const dbAsset = Asset.fromModule(require('../../GeoHand.db'));
 // const dbUri = dbAsset.uri;
+
 const Tab = createBottomTabNavigator();
 const CitiesScreen = () => {
   const [code, setCode] = useState("");
@@ -43,12 +46,11 @@ const CitiesScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [citiesArr, setCitiesArr] = useState([]);
   const [cities, setCities] = useState([]);
+  const [mapMounted, setMapMounted] = useState(false);
   //const [regions,setRegions]=useState([]);
   const { t } = useTranslation();
 
-  const MapRouteCities = () => (
-    <CountryMap onReady={() => setDataReady(true)} />
-  );
+  const MapRouteCities = () => <CountryMap />;
 
   const DetailsRouteCities = () => <CitiesDetails />;
   const [index, setIndex] = useState(0);
@@ -73,26 +75,35 @@ const CitiesScreen = () => {
 
   useEffect(() => {
     fetchCitiesFromDB();
-    setDataReady(true);
+    setCities(fetchCitiesTable());
   }, []);
+
+  useEffect(() => {
+    // if (mapMounted) {
+    // Delay the rendering of content until the CountryMap component has mounted
+    //}
+  }, [mapMounted]);
+
   return (
     <>
-      {dataReady ? (
-        <BottomNavigation
-          navigationState={{ index, routes }}
-          onIndexChange={setIndex}
-          renderScene={renderScene}
-          barStyle={{ backgroundColor: "#144e5a" }}
-          inactiveColor="white"
-          theme={{
-            colors: { secondaryContainer: "#ffb901" },
-          }}
-          activeColor="white"
-        />
-      ) : (
-        <Spinner />
-      )}
+      <BottomNavigation
+        navigationState={{ index, routes }}
+        onIndexChange={setIndex}
+        renderScene={renderScene}
+        barStyle={{ backgroundColor: "#144e5a" }}
+        inactiveColor="white"
+        theme={{
+          colors: { secondaryContainer: "#ffb901" },
+        }}
+        activeColor="white"
+      />
     </>
+    // <NavigationContainer independent={true}>
+    //   <Tab.Navigator>
+    //     <Tab.Screen name="Map" component={CountryMap} lazy={true} />
+    //     <Tab.Screen name="Details" component={CitiesDetails} />
+    //   </Tab.Navigator>
+    // </NavigationContainer>
   );
 };
 

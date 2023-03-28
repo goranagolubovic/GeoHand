@@ -45,6 +45,9 @@ const portraitStyles = StyleSheet.create({
     margin: valueHeight * 0.02,
     gap: valueHeight * 0.01,
   },
+  history: {
+    textAlign: "center",
+  },
 });
 
 export default portraitStyles;
