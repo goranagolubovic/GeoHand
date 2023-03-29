@@ -31,9 +31,9 @@ const LandMarksScreen = () => {
   });
 
   useEffect(() => {
-    try {
-      const res = fetchLandmarksFromDB();
-    } catch (err) {}
+    (async function () {
+      await fetchLandmarksFromDB();
+    })();
   }, []);
 
   return (

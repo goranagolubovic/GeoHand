@@ -40,8 +40,8 @@ const LandmarksMap = () => {
           initialRegion={{
             latitude: 48.8566,
             longitude: 2.3522,
-            latitudeDelta: 50,
-            longitudeDelta: 50,
+            latitudeDelta: 0.5,
+            longitudeDelta: 0.5,
           }}
         >
           {landMarksData.map((landmark) => (

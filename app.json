@@ -24,12 +24,18 @@
       "permissions": [
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE",
-          "INTERNET",
-          "ACCESS_NETWORK_STATE"
-      ]
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ],
+      "package": "com.goca.GeoHand"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b3e28bda-794a-4648-be47-9050566470fc"
+      }
     }
   }
 }

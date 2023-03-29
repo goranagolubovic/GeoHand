@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  spinner: {
+    width: valueWidth * 0.33,
+    height: valueWidth * 0.25,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default styles;

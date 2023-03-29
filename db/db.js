@@ -180,6 +180,7 @@ const landmarks = [
 
 export const fetchCitiesFromDB = () => {
   db.transaction((tx) => {
+    // tx.executeSql(`DROP TABLE IF EXISTS city`, []);
     tx.executeSql(
       "CREATE TABLE  IF NOT EXISTS city(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)",
       [],
@@ -215,6 +216,7 @@ export const fetchCitiesFromDB = () => {
 
 export const fetchLandmarksFromDB = () => {
   db.transaction((tx) => {
+    // tx.executeSql("DROP TABLE landmarks", []);
     tx.executeSql(
       "CREATE TABLE IF NOT EXISTS landmarks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,details TEXT,image TEXT,favourite NUMBER)",
       [],
@@ -252,45 +254,53 @@ export const fetchLandmarksFromDB = () => {
 
 export const fetchCitiesTable = async () => {
   return new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      rowArrayCities = [];
-      if (rowArrayCities.length == 0) {
-        tx.executeSql(
-          `SELECT * FROM city`,
-          [],
-          (_, result) => {
-            const rows = result.rows;
-            for (let i = 0; i < rows.length; i++) {
-              rowArrayCities.push(rows.item(i));
-            }
-            resolve(rowArrayCities);
-          },
-          (_, error) => reject(error)
-        );
-      }
-    });
+    db.transaction(
+      (tx) => {
+        rowArrayCities = [];
+        if (rowArrayCities.length == 0) {
+          tx.executeSql(
+            `SELECT * FROM city`,
+            [],
+            (_, result) => {
+              const rows = result.rows;
+              for (let i = 0; i < rows.length; i++) {
+                rowArrayCities.push(rows.item(i));
+              }
+              resolve(rowArrayCities);
+            },
+            (_, error) => reject(error)
+          );
+        }
+      },
+      reject,
+      resolve
+    );
   });
 };
 
 export const fetchLandmarksTable = async () => {
   return new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      rowArrayLandmarks = [];
-      if (rowArrayLandmarks.length == 0) {
-        tx.executeSql(
-          `SELECT * FROM landmarks`,
-          [],
-          (_, result) => {
-            const rows = result.rows;
-            for (let i = 0; i < rows.length; i++) {
-              rowArrayLandmarks.push(rows.item(i));
-            }
-            resolve(rowArrayLandmarks);
-          },
-          (_, error) => reject(error)
-        );
-      }
-    });
+    db.transaction(
+      (tx) => {
+        rowArrayLandmarks = [];
+        if (rowArrayLandmarks.length == 0) {
+          tx.executeSql(
+            `SELECT * FROM landmarks`,
+            [],
+            (_, result) => {
+              const rows = result.rows;
+              for (let i = 0; i < rows.length; i++) {
+                rowArrayLandmarks.push(rows.item(i));
+              }
+              resolve(rowArrayLandmarks);
+            },
+            (_, error) => reject(error)
+          );
+        }
+      },
+      reject,
+      resolve
+    );
   });
 };
 

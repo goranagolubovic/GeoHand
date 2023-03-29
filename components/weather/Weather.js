@@ -4,7 +4,7 @@ import { Image } from "react-native";
 import { View, Text, Dimensions } from "react-native";
 import { getWeathersData } from "../../api/services/weather-service";
 import { calculateCelziusTemp } from "../../util";
-import { Avatar } from "react-native-paper";
+import { ActivityIndicator, Avatar } from "react-native-paper";
 import { useOrientation } from "../../hooks/use-orientation";
 
 import styles from "./Weather.style";
@@ -48,34 +48,39 @@ const Weather = ({ name, lat, lon }) => {
 
   return (
     <View style={styles.centralContainer}>
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <View style={styles.temp}>
-            <Avatar.Icon
-              size={
-                isPortrait
-                  ? Dimensions.get("window").height * 0.06
-                  : Dimensions.get("window").width * 0.06
-              }
-              icon="thermometer"
-              style={styles.tempIcon}
-            />
-            <Text style={styles.currentTemp}>{temp}°C</Text>
+      {icon !== "" ? (
+        <View style={styles.container}>
+          <View style={styles.content}>
+            <View style={styles.temp}>
+              <Avatar.Icon
+                size={
+                  isPortrait
+                    ? Dimensions.get("window").height * 0.06
+                    : Dimensions.get("window").width * 0.06
+                }
+                icon="thermometer"
+                style={styles.tempIcon}
+              />
+              <Text style={styles.currentTemp}>{temp}°C</Text>
+            </View>
+            <Text style={styles.info}>
+              {t("common:subFeel")}: {feelsLike}
+            </Text>
+            <Text style={styles.info}>
+              {" "}
+              {t("common:today")}, {date}
+            </Text>
           </View>
-          <Text style={styles.info}>
-            {t("common:subFeel")}: {feelsLike}
-          </Text>
-          <Text style={styles.info}>
-            {" "}
-            {t("common:today")}, {date}
-          </Text>
-        </View>
-        {icon !== "" ? (
           <Image source={{ uri: icon }} style={styles.icon} />
-        ) : (
-          ""
-        )}
-      </View>
+        </View>
+      ) : (
+        <ActivityIndicator
+          animating={true}
+          style={styles.spinner}
+          size="large"
+          color="#gray"
+        />
+      )}
       <Text style={styles.place}>
         {name}, {description}
       </Text>
