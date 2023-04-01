@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import { View, ScrollView } from "react-native";
-import { fetchLandmarksTable } from "../../db/db";
+import { fetchLandmarksFromDB, fetchLandmarksTable } from "../../db/db";
 import LandmarkDetails from "../landmark-details/LandmarkDetails";
 
 const LandmarksMap = () => {
@@ -20,6 +20,7 @@ const LandmarksMap = () => {
   };
 
   const getInfos = async () => {
+    await fetchLandmarksFromDB();
     const result = await fetchLandmarksTable();
     setLandMarksData(result);
   };

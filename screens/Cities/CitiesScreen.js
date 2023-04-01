@@ -31,10 +31,12 @@ const CitiesScreen = () => {
     detaljiGradovi: DetailsRouteCities,
     mapaGradovi: MapRouteCities,
   });
-
-  useEffect(() => {
-    fetchCitiesFromDB();
-  }, []);
+  // const initializeDb = async () => {
+  //   await fetchCitiesFromDB();
+  // };
+  // useEffect(() => {
+  //   initializeDb();
+  // }, []);
 
   return (
     <>

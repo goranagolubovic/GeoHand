@@ -30,11 +30,11 @@ const LandMarksScreen = () => {
     mapaZnamenitosti: MapRouteLandmarks,
   });
 
-  useEffect(() => {
-    (async function () {
-      await fetchLandmarksFromDB();
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async function () {
+  //     await fetchLandmarksFromDB();
+  //   })();
+  // }, []);
 
   return (
     <BottomNavigation

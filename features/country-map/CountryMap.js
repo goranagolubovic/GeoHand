@@ -1,14 +1,21 @@
 import { React, useEffect, useState } from "react";
 import MapView, { Marker } from "react-native-maps";
-import { fetchCitiesTable } from "../../db/db";
+import { fetchCitiesTable, fetchCitiesFromDB } from "../../db/db";
 
 const CountryMap = () => {
   const [citiesData, setCitiesData] = useState([]);
 
   const fetchInfos = async () => {
+    await fetchCitiesFromDB();
     const response = await fetchCitiesTable();
     setCitiesData(response);
   };
+  // const initializeDb = async () => {
+  //   await fetchCitiesFromDB();
+  // };
+  // useEffect(() => {
+  //   initializeDb();
+  // }, []);
 
   useEffect(() => {
     fetchInfos();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { Divider } from "react-native-paper";
-import { fetchLandmarksTable } from "../../db/db";
+import { fetchLandmarksFromDB, fetchLandmarksTable } from "../../db/db";
 import LandmarkDetails from "../landmark-details/LandmarkDetails";
 
 const LandmarksDetails = () => {
@@ -9,6 +9,7 @@ const LandmarksDetails = () => {
   const [dbChanged, setDBChanged] = useState(null);
 
   const getInfos = async () => {
+    await fetchLandmarksFromDB();
     const result = await fetchLandmarksTable();
     setLandMarksData(result);
   };
