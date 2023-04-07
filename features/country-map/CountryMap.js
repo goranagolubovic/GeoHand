@@ -10,12 +10,6 @@ const CountryMap = () => {
     const response = await fetchCitiesTable();
     setCitiesData(response);
   };
-  // const initializeDb = async () => {
-  //   await fetchCitiesFromDB();
-  // };
-  // useEffect(() => {
-  //   initializeDb();
-  // }, []);
 
   useEffect(() => {
     fetchInfos();

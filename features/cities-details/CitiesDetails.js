@@ -1,11 +1,7 @@
 import { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import CityDetails from "../../features/city-details/CityDetails";
-import {
-  fetchCitiesFromDB,
-  fetchCitiesTable,
-  fetchLandmarksFromDB,
-} from "../../db/db";
+import { fetchCitiesFromDB, fetchCitiesTable } from "../../db/db";
 
 const CitiesDetails = () => {
   const [citiesData, setCitiesData] = useState([]);

@@ -178,41 +178,6 @@ const landmarks = [
   },
 ];
 
-// export const fetchCitiesFromDB = () => {
-//   db.transaction((tx) => {
-//     // tx.executeSql(`DROP TABLE IF EXISTS city`, []);
-//     tx.executeSql(
-//       "CREATE TABLE  IF NOT EXISTS city(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,description TEXT)",
-//       [],
-//       () => {
-//         tx.executeSql(
-//           "SELECT count(*) as count FROM city",
-//           [],
-//           (_, result) => {
-//             const count = result.rows.item(0).count;
-//             if (count === 0) {
-//               cities.forEach((elem) => {
-//                 tx.executeSql(
-//                   "INSERT INTO city (name,lat,lon,country,description) VALUES (?,?,?,?,?)",
-//                   [
-//                     elem.name,
-//                     elem.lat,
-//                     elem.lon,
-//                     elem.country,
-//                     elem.description,
-//                   ]
-//                 );
-//               });
-//             }
-//           },
-//           (_, error) => {
-//             console.log("Error while checking table: " + error);
-//           }
-//         );
-//       }
-//     );
-//   });
-// };
 export const fetchCitiesFromDB = async () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -250,44 +215,6 @@ export const fetchCitiesFromDB = async () => {
     });
   });
 };
-
-// export const fetchLandmarksFromDB = () => {
-//   db.transaction((tx) => {
-//     // tx.executeSql("DROP TABLE landmarks", []);
-//     tx.executeSql(
-//       "CREATE TABLE IF NOT EXISTS landmarks (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT,lat NUMBER, lon NUMBER, country TEXT,details TEXT,image TEXT,favourite NUMBER)",
-//       [],
-//       () => {
-//         tx.executeSql(
-//           "SELECT count(*) as count FROM landmarks",
-//           [],
-//           (_, result) => {
-//             const count = result.rows.item(0).count;
-//             if (count === 0) {
-//               landmarks.forEach((elem) => {
-//                 tx.executeSql(
-//                   "INSERT INTO landmarks (name,lat,lon,country,details,image,favourite) VALUES (?,?,?,?,?,?,?)",
-//                   [
-//                     elem.name,
-//                     elem.lat,
-//                     elem.lon,
-//                     elem.country,
-//                     elem.details,
-//                     elem.image,
-//                     elem.favorite,
-//                   ]
-//                 );
-//               });
-//             }
-//           },
-//           (_, error) => {
-//             console.log("Error while checking table: " + error);
-//           }
-//         );
-//       }
-//     );
-//   });
-// };
 
 export const fetchLandmarksFromDB = async () => {
   return new Promise((resolve, reject) => {
